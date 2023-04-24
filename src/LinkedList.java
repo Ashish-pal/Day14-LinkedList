@@ -1,5 +1,5 @@
 public class LinkedList {
-    Node head; // head of the list
+    Node head;
 
     static class Node {
         int data;
@@ -15,14 +15,13 @@ public class LinkedList {
         LinkedList list = new LinkedList();
         System.out.println("Welcome to Linked List Practice Problem");
 
-        list.head = new Node(56);
+        list.head = new Node(70);
         Node second = new Node(30);
-        Node third = new Node(70);
+        Node third = new Node(56);
 
         list.head.next = second;
         second.next = third;
 
-        // print the linked list
         Node n = list.head;
         while (n != null) {
             System.out.print(n.data + " ");
