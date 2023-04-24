@@ -11,19 +11,22 @@ public class LinkedList {
         }
     }
 
-    public void popLast() {
-        if (head == null) {
-            return;
-        }
-        if (head.next == null) {
-            head = null;
-            return;
-        }
+    public void search(int value) {
         Node current = head;
-        while (current.next.next != null) {
+        boolean found = false;
+
+        while (current != null) {
+            if (current.data == value) {
+                found = true;
+                break;
+            }
             current = current.next;
         }
-        current.next = null;
+
+        if (found)
+            System.out.println("value " + value + " found in the list.");
+        else
+            System.out.println("value " + value + " not found in the list.");
     }
 
     public static void main(String[] args) {
@@ -37,12 +40,6 @@ public class LinkedList {
         list.head.next = second;
         second.next = third;
 
-        list.popLast();
-
-        Node n = list.head;
-        while (n != null) {
-            System.out.print(n.data + " ");
-            n = n.next;
-        }
+        list.search(30);
     }
 }
