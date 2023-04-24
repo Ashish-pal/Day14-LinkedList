@@ -1,63 +1,99 @@
 public class LinkedList {
-    Node head;
-
     static class Node {
         int data;
         Node next;
 
-        Node(int d) {
-            data = d;
-            next = null;
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
         }
     }
 
-    public void insertAfter(Node prevNode, int newData) {
-        if (prevNode == null) {
-            System.out.println("previous node cannot be null");
-            return;
-        }
-        Node newNode = new Node(newData);
-        newNode.next = prevNode.next;
-        prevNode.next = newNode;
+    Node head;
+
+    public LinkedList() {
+        this.head = null;
     }
 
-    public void append(int data) {
+    public void add(int data) {
         Node newNode = new Node(data);
+
         if (head == null) {
             head = newNode;
+        } else {
+            Node current = head;
+
+            while (current.next != null) {
+                current = current.next;
+            }
+
+            current.next = newNode;
+        }
+    }
+
+    public void delete(int key) {
+        if (head == null) {
             return;
         }
+
+        if (head.data == key) {
+            head = head.next;
+            return;
+        }
+
+        Node prev = null;
         Node current = head;
-        while (current.next != null) {
+
+        while (current != null && current.data != key) {
+            prev = current;
             current = current.next;
         }
-        current.next = newNode;
+
+        if (current == null) {
+            return;
+        }
+
+        prev.next = current.next;
+    }
+
+    // Method to get the size of the LinkedList
+    public int size() {
+        int count = 0;
+        Node current = head;
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
     }
 
     public void printList() {
-        Node tNode = head;
-        while (tNode != null) {
-            System.out.print(tNode.data + " ");
-            tNode = tNode.next;
+        Node current = head;
+
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
         }
+
+        System.out.println();
     }
 
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
-        System.out.println("Welcome to Linked List Practice Problem");
 
-        list.append(56);
-        list.append(30);
-        list.append(70);
+        list.add(56);
+        list.add(30);
+        list.add(40);
+        list.add(70);
 
-        System.out.println("Linked list before insertion: ");
+        System.out.println("Original LinkedList:");
         list.printList();
 
-        Node nodeWith30 = list.head.next;
+        list.delete(40);
 
-        list.insertAfter(nodeWith30, 40);
-
-        System.out.println("\nLinked list after insertion:");
+        System.out.println("LinkedList after deleting node with key value of 40:");
         list.printList();
+
+        System.out.println("Size of the LinkedList: " + list.size());
     }
 }
