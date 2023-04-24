@@ -11,11 +11,19 @@ public class LinkedList {
         }
     }
 
-    public void pop() {
+    public void popLast() {
         if (head == null) {
             return;
         }
-        head = head.next;
+        if (head.next == null) {
+            head = null;
+            return;
+        }
+        Node current = head;
+        while (current.next.next != null) {
+            current = current.next;
+        }
+        current.next = null;
     }
 
     public static void main(String[] args) {
@@ -29,7 +37,7 @@ public class LinkedList {
         list.head.next = second;
         second.next = third;
 
-        list.pop();
+        list.popLast();
 
         Node n = list.head;
         while (n != null) {
