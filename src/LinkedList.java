@@ -14,14 +14,11 @@ public class LinkedList {
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
         System.out.println("Welcome to Linked List Practice Problem");
-
-        list.head = new Node(70);
+        list.head = new Node(56);
         Node second = new Node(30);
-        Node third = new Node(56);
-
+        Node third = new Node(70);
         list.head.next = second;
         second.next = third;
-
         Node n = list.head;
         while (n != null) {
             System.out.print(n.data + " ");
